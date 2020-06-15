@@ -1,4 +1,5 @@
 import praw
+from praw.models import MoreComments
 
 reddit = praw.Reddit(client_id="qqV8kmfjpDEE9w",
                      client_secret="e6iVDV92IM7LyQRA1TOdPbYbT4w",
@@ -7,9 +8,15 @@ reddit = praw.Reddit(client_id="qqV8kmfjpDEE9w",
 
 arr_comments = []
 
-hot_posts = reddit.subreddit('wallstreetbets').hot(limit=1)
-for post in hot_posts:
+discussionPost = reddit.subreddit('wallstreetbets').hot(limit=1)
+
+
+for post in discussionPost:
+    post.comments.replace_more(limit=3)
     for comment in post.comments:
-        arr_comments.append(comment)
+        try:
+            arr_comments.append(comment.body )
+        except AttributeError:
+            pass
 
 print(arr_comments)
