@@ -1,4 +1,23 @@
 import praw
+import tkinter as tk
+
+
+window = tk.Tk()
+
+
+label = tk.Label(text= "r/WSB Comment Scraper!!!", foreground = "white",background = "black",)
+label.pack()
+
+button = tk.Button(text = "Start Program", width = 40, height = 30, )
+button.pack()
+
+
+window.mainloop()
+
+
+
+
+
 
 
 reddit = praw.Reddit(client_id="qqV8kmfjpDEE9w",
