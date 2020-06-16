@@ -12,7 +12,7 @@ discussionPost = reddit.subreddit('wallstreetbets').hot(limit=1)
 
 
 for post in discussionPost:
-    post.comments.replace_more(limit=3)
+    post.comments.replace_more(limit=4)
     for comment in post.comments:
         try:
             arr_comments.append(comment.body )
