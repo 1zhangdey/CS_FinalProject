@@ -1,7 +1,6 @@
 import praw
 import time
 
-
 arr_comments = []
 
 reddit = praw.Reddit(client_id="qqV8kmfjpDEE9w",
@@ -11,7 +10,7 @@ reddit = praw.Reddit(client_id="qqV8kmfjpDEE9w",
 discussionPost = reddit.subreddit("wallstreetbets").hot(limit=1)
 
 def scrape_comments(state):
-    if state == True:
+    if state == "y" or state == "Y":
         for post in discussionPost:
             print("Running, Please Be Patient")
             post.comments.replace_more(limit=1)
@@ -22,14 +21,24 @@ def scrape_comments(state):
                     pass
     print("Successfully Scraped The Comments")
 
+def printComments(start):
+    if start == 'Y'or start == "y":
+        for comment in arr_comments:
+            print(comment)
 
 #start of program
 print("Welcome to the Reddit Comment Scraper!")
-time.sleep(3)
+time.sleep(2)
 print("Booting Up")
 time.sleep(1)
-subreddit = str(input("What Subreddit can I scrap for you today?"))
-time.sleep(2)
-print("Very nice choice sir")
-time.sleep(1)
 print("Accessing Subreddit")
+time.sleep(3)
+startScraping = str(input("Do you want to start scraping? Y/N: "))
+scrape_comments(startScraping)
+time.sleep(3)
+print("You have scraped " + str(len(arr_comments)) + " comments")
+time.sleep(2)
+print("Do you want to print the comments?")
+choice = str(input("Y/N; "))
+time.sleep(2)
+printComments(choice)
